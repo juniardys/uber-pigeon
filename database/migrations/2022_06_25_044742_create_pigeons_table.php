@@ -20,6 +20,7 @@ class CreatePigeonsTable extends Migration
             $table->double('range')->index();
             $table->decimal('cost', 19, 2);
             $table->double('downtime')->index();
+            $table->double('weight')->nullable()->index();
             $table->boolean('is_active')->default(true)->index();
             $table->timestamps();
             $table->softDeletes();

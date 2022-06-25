@@ -16,11 +16,11 @@ class CreatePigeonsTable extends Migration
         Schema::create('pigeons', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->double('speed');
-            $table->double('range');
+            $table->double('speed')->index();
+            $table->double('range')->index();
             $table->decimal('cost', 19, 2);
-            $table->double('downtime');
-            $table->boolean('is_active')->default(true);
+            $table->double('downtime')->index();
+            $table->boolean('is_active')->default(true)->index();
             $table->timestamps();
             $table->softDeletes();
         });

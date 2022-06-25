@@ -15,7 +15,7 @@ class CreateOrderItemsTable extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('order_id');
+            $table->uuid('order_id')->index();
             $table->string('name');
             $table->double('weight');
             $table->text('note')->nullable();

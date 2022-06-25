@@ -15,7 +15,7 @@ class CreateTimeOffsTable extends Migration
     {
         Schema::create('time_offs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('pigeon_id');
+            $table->uuid('pigeon_id')->index();
             $table->enum('reason', ['sick_leave', 'rest', 'other'])->default('other');
             $table->text('desription')->nullable();
             $table->dateTime('start');

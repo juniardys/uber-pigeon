@@ -17,7 +17,7 @@ class TimeoffCreateRequest extends BaseRequest
         return [
             'pigeon_id' => 'required|exists:pigeons,id',
             'reason' => 'required|in:sick_leave,rest,other',
-            'start' => 'required|date',
+            'start' => 'required|date|after:now',
             'end' => 'required|date|after:start',
         ];
     }

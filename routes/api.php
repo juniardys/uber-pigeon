@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\v1\AuthController;
+use App\Http\Controllers\v1\OrderController;
 use App\Http\Controllers\v1\PigeonController;
 use App\Http\Controllers\v1\TimeoffController;
 use Illuminate\Support\Facades\Route;
@@ -32,12 +33,19 @@ Route::prefix('v1')->group(function () {
             Route::delete('/{id}', [PigeonController::class, 'delete']);
         });
     
-        // Pigeon
+        // Timeoff
         Route::prefix('timeoff')->group(function () {
             Route::get('/', [TimeoffController::class, 'get']);
             Route::post('/', [TimeoffController::class, 'create']);
             Route::put('/{id}', [TimeoffController::class, 'update']);
             Route::delete('/{id}', [TimeoffController::class, 'delete']);
+        });
+    
+        // Order
+        Route::prefix('order')->group(function () {
+            Route::get('/', [OrderController::class, 'get']);
+            Route::post('/available', [OrderController::class, 'available']);
+            Route::post('/create', [OrderController::class, 'create']);
         });
     });
 });

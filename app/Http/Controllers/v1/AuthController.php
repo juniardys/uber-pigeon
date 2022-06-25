@@ -15,7 +15,7 @@ use App\Http\Requests\RegisterRequest;
 class AuthController extends Controller
 {
     use ApiResponse;
-    //
+
     public function register(RegisterRequest $request) {
         try {
             DB::beginTransaction();
@@ -27,7 +27,7 @@ class AuthController extends Controller
             ]);
 
             DB::commit();
-            return $this->responseSuccess(new UserResource($user), 'Successfully Registered!');
+            return $this->responseSuccess(new UserResource($user), 'Successfully registered!');
         } catch (\Throwable $th) {
             DB::rollback();
             return $this->responseError($th->getMessage());

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreatePigeonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('pigeons', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->string('email')->unique()->index();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->index();
-            $table->rememberToken();
+            $table->double('speed')->index();
+            $table->double('range')->index();
+            $table->decimal('cost', 19, 2);
+            $table->double('downtime')->index();
+            $table->double('weight')->nullable()->index();
+            $table->boolean('is_active')->default(true)->index();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +34,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('pigeons');
     }
 }

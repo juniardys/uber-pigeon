@@ -18,7 +18,7 @@ class PigeonController extends Controller
     public function get(Request $request) {
         try {
             $pigeons = Pigeon::paginate($request->limit ?: 10);
-            return $this->responseSuccess(PigeonResource::collection($pigeons)->response()->getData(true), 'Pigeon Created Succesfully!');
+            return $this->responseSuccess(PigeonResource::collection($pigeons)->response()->getData(true), 'Pigeon list retrieved succesfully!');
         } catch (\Throwable $th) {
             return $this->responseError($th->getMessage());
         }

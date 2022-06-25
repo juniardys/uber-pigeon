@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\OrderResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PigeonResource extends JsonResource
+class OrderItemResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,16 +17,13 @@ class PigeonResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'order_id' => $this->order_id,
             'name' => $this->name,
-            'speed' => $this->speed,
-            'range' => $this->range,
-            'cost' => $this->cost,
-            'downtime' => $this->downtime,
             'weight' => $this->weight,
-            'is_active' => $this->is_active,
+            'note' => $this->note,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'orders' => OrderResource::collection($this->whenLoaded('orders')),
+            'order' => OrderResource::collection($this->whenLoaded('order')),
         ];
     }
 }

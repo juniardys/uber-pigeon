@@ -79,6 +79,8 @@ class TimeoffController extends Controller
             $timeoff->start = $request->input('start');
             $timeoff->end = $request->input('end');
 
+            $timeoff->save();
+
             DB::commit();
             return $this->responseSuccess(new TimeoffResource($timeoff), 'Timeoff saved!');
         } catch (\Throwable $th) {

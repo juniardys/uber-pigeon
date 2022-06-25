@@ -35,3 +35,7 @@ php artisan passport:client --personal
 ```
 
 Enter name and enter.
+
+### Postman 
+
+Link: https://www.getpostman.com/collections/a21f606a558229efc819

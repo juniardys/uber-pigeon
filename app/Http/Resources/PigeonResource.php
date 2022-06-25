@@ -16,7 +16,7 @@ class PigeonResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $result = [
             'id' => $this->id,
             'name' => $this->name,
             'speed' => $this->speed,
@@ -30,5 +30,11 @@ class PigeonResource extends JsonResource
             'orders' => OrderResource::collection($this->whenLoaded('orders')),
             'timeoffs' => TimeoffResource::collection($this->whenLoaded('timeoffs')),
         ];
+
+        if ($this->total_cost) {
+            $result['total_cost'] = $this->total_cost;
+        }
+
+        return $result;
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class OrderAvailableRequest extends FormRequest
+class OrderAvailableRequest extends BaseRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,7 +14,11 @@ class OrderAvailableRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'distance' => 'required|numeric',
+            'deadline' => 'required|date|after:now',
+            'items' => 'required',
+            'items.*.name' => 'required',
+            'items.*.weight' => 'required|numeric',
         ];
     }
 }

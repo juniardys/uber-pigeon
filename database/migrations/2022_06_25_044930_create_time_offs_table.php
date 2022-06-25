@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTimeOffsTable extends Migration
+class CreateTimeoffsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTimeOffsTable extends Migration
      */
     public function up()
     {
-        Schema::create('time_offs', function (Blueprint $table) {
+        Schema::create('timeoffs', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('pigeon_id')->index();
             $table->enum('reason', ['sick_leave', 'rest', 'other'])->default('other');

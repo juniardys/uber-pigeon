@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\OrderResource;
+use App\Http\Resources\TimeoffResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PigeonResource extends JsonResource
@@ -26,6 +28,7 @@ class PigeonResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'orders' => OrderResource::collection($this->whenLoaded('orders')),
+            'timeoffs' => TimeoffResource::collection($this->whenLoaded('timeoffs')),
         ];
     }
 }

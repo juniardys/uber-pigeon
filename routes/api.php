@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\v1\AuthController;
 use App\Http\Controllers\v1\PigeonController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\v1\TimeoffController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,14 +19,25 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
+
     Route::get('logout', [AuthController::class, 'logout']);
 
-    // Pigeon
-    Route::prefix('pigeon')->group(function () {
-        Route::get('/', [PigeonController::class, 'get']);
-        Route::post('/', [PigeonController::class, 'create']);
-        Route::put('/{id}', [PigeonController::class, 'update']);
-        Route::post('/{id}/toggle-status', [PigeonController::class, 'toggleStatus']);
-        Route::delete('/{id}', [PigeonController::class, 'delete']);
+    Route::middleware(['auth:api'])->group(function () {
+        // Pigeon
+        Route::prefix('pigeon')->group(function () {
+            Route::get('/', [PigeonController::class, 'get']);
+            Route::post('/', [PigeonController::class, 'create']);
+            Route::put('/{id}', [PigeonController::class, 'update']);
+            Route::post('/{id}/toggle-status', [PigeonController::class, 'toggleStatus']);
+            Route::delete('/{id}', [PigeonController::class, 'delete']);
+        });
+    
+        // Pigeon
+        Route::prefix('timeoff')->group(function () {
+            Route::get('/', [TimeoffController::class, 'get']);
+            Route::post('/', [TimeoffController::class, 'create']);
+            Route::put('/{id}', [TimeoffController::class, 'update']);
+            Route::delete('/{id}', [TimeoffController::class, 'delete']);
+        });
     });
 });

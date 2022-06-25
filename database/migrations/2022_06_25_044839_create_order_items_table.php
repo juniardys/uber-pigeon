@@ -20,6 +20,7 @@ class CreateOrderItemsTable extends Migration
             $table->double('weight');
             $table->text('note')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('order_id')
                 ->references('id')
